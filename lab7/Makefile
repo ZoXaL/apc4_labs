@@ -1,19 +1,8 @@
-os:=undefined
-
-ifeq (${OS},Windows_NT)
-	os:=win
-	specialDependencies=${buildFolder}/win/messageListener
-else
-	os:=lin
-endif
-
 srcFolder:=src
 buildFolder:=build
 
-CFLAGS:=-Wall -pedantic -std=c11 -g -I${srcFolder} -Isrc
+CFLAGS:=-Wall -pedantic -Werror -std=c11 -g -I${srcFolder} -I${srcFolder}/impl/com-port_win
 
-lab3: ${buildFolder}/${os}/messager ${specialDependencies}
-
-${buildFolder}/${os}/messager: ${srcFolder}/messager.c ${srcFolder}/${os}/messager_${os}.c 
+${buildFolder}/lab3: ${srcFolder}/messager.c ${srcFolder}/impl/com-port_win/messager_impl.c 
+	mkdir -p ${buildFolder}
 	gcc ${CFLAGS} $^ -o $@
-

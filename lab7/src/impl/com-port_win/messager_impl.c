@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
-#include "common.h"
 #include "messager.h"
+#include "messager_settings.h"
 
 extern unsigned short isFirst;
 
